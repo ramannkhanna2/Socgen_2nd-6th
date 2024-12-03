@@ -1,0 +1,230 @@
+```
+Welcome to OpenDev Etherpad!
+
+my name is raman khanna
+
+
+cloud providers : aws , azure , gcp , firebase , oracle , ibm , etc 
+
+
+business owner : application (xyz) to be created >> i need compute ( ram & cpu ) (servers , operating system 
+) , ntwrking , databse , disk , etc ....  ( vendor dependency )
+
+
+
+
+before the cloud ws introduced : before 2004 04 mybe 2006 : traditional 
+
+  -- capacity planning (5-6 mnths ) : involved cost and costly to purchase the infrastructuire
+    -- utlization of resources by my application users ( number of userbase ) & when they are active 
+    --compute (cpu utilization , ram , hard disk )
+    -- servers
+
+
+
+jan . feb : 500 
+
+march : number of user increased drstically 5000 
+ scale : challenge 
+
+
+
+( virtualization ) : busines owner still nees to purchase the components but manage virtually..
+
+hypervisors :  vmware , filezilla , virtual box 
+
+
+challenges : 
+  managing resources 
+  compatibility and scaling
+
+
+
+
+cloud : 2006 : massive infrastructure
+   
+ small business owners now even to develop  to thousands of users
+
+rent the infra from my provider ... ( pay as u go ) .. service cost
+   resources provider : aws , azure , gcp
+
+designing my application :
+capacity planning : not essential ( if my usrerbase increaes)
+   3 servers : userbase >>> 300000
+
+
+
+
+=======================================================================================
+
+
+webapps :
+
+install visuall studio code ..
+
+https://github.com/ramannkhanna2/JavaWebAppp.git
+
+
+HP@DESKTOP-3G12VKI MINGW64 ~/Desktop
+$ git clone https://github.com/ramannkhanna2/JavaWebAppp.git
+Cloning into 'JavaWebAppp'...
+remote: Enumerating objects: 69, done.
+
+
+install java :
+    https://www.oracle.com/in/java/technologies/downloads/#jdk21-windows
+
+mven installation :
+
+https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
+
+create an env variable >> system var >> path >> C:\Users\HP\Downloads\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin
+
+
+-- create my webapp ..
+
+asp : basic 
+
+====================================================================
+
+--- in visual studio code , cd inside the javawebapp folder :
+    
+    201  pwd
+  202  ls
+  
+  -- build ur artefact :
+      
+  203  mvn clean package
+  
+  code >> artefact >> build 
+  
+  -- after building the artefact , install the extesion : azure app services ..
+  
+  ---- right click on the created jar file >> deploy2webapp 
+  
+
+
+---- make the changes and redeploy ........................
+
+
+=======================================================
+
+
+deployment slots :
+    
+    
+default : prodn   
+
+ramanwebapp-auhye5chduakg4h5.canadacentral-01.azurewebsites.net
+    
+    
+    -- creating a deployment slot of name : otherversion 
+    
+    otherversion: (testing )
+ramanwebapp-otherversion-hnhaccfyeqhsd6hc.canadacentral-01.azurewebsites.net
+
+--------------------
+    
+    --- on vscode , install azure services extension as well ....
+    
+    onmy code , changed the box bckground : puprle for my otherversion slot..
+    
+    ---
+    mvn clean package 
+    
+    ---- go to extension azure resources  >> deploy2slot 
+    
+    -----------------------------------------------    
+    
+    
+    we can do a swap over for a/b testing ....
+    
+try swapping from default to otherversion..
+
+tha go for canary deploymnt :
+    
+    split the traffic on ur default domain :
+        50-50 or wtever split u like 
+        
+        --then test ut up;;
+        
+        ======================================================================================
+        
+        
+        Azure function : 
+        
+        
+        
+    
+Here’s how you can easily demonstrate the React-based contact form submission using Azure Functions:
+
+Step-by-Step Demonstration
+1. Create the Azure Function
+ 
+Open the Azure     Portal. 
+Go to Azure     Functions and click Create Function App. 
+Configure the function     app:   
+Select a      resource group.  
+Use a unique      name for your function app (e.g., simple-contact-form).  
+Runtime stack:      Node.js.  
+Hosting:      Select Consumption Plan.  
+Click Review      + Create and then Create.  
+Once the     function app is created:   
+Go to the Functions      section in the function app.  
+Click + Add      Function, select HTTP Trigger, and name it SubmitForm. 
+2. Write the Function Code
+ 
+In the Azure     Portal, edit the index.js file of the function:
+ 
+module.exports = async function (context, req) {
+    context.log('JavaScript HTTP trigger function processed a request.');
+ 
+    // Extract the name and email from query or request body
+    const name = (req.query.name || (req.body && req.body.name));
+    const email = (req.query.email || (req.body && req.body.email));
+ 
+    // Check if both name and email are provided for the personalized response
+    let responseMessage;
+    if (name && email) {
+        responseMessage = `Hello, ${name}, your email address is ${email}. This HTTP triggered function executed successfully.`;
+    } else {
+        responseMessage = "This HTTP triggered function executed successfully. Pass both name and email in the query string or in the request body for a personalized response.";
+    }
+ 
+    // Set the response with the message
+    context.res = {
+        // status: 200, /* Defaults to 200 */
+        body: responseMessage
+    };
+};
+ 
+ 
+ 
+ 
+ 
+Save the file. 
+Test the get     request by adding query parameters :
+Name: rakesh
+Email testrakesh
+ 
+Test the     function using the Test/Run button in the portal for post request:   
+Choose POST method.  
+Use a JSON      payload: 
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "message": "Hello!"
+}
+   
+Check the      output. You should see the success response. 
+
+
+
+========================================================================
+
+
+default (Function key)  : add this URL on ur App.js
+
+===============================================
+
+```
