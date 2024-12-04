@@ -1,0 +1,178 @@
+```
+
+===============================================
+
+installation of docker >> code     >>    dockerfile (set of instructions)   >>   docker image (template: set of intructions in form of an artefact) read only part  (azure registry)    >>> containers  (application for our users )  running part of my apps  : host on aks , aci
+
+Contanerization :
+    
+---- create a machine of ubuntu and wl be install docker on top it ...
+
+ssh inside >> sudo -i
+
+-- install docker :
+    
+https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
+
+
+
+
+ docker -v
+   17  ls
+   18  docker ps
+   19  docker images
+   20  git clone https://github.com/ramannkhanna2/nodejsapp_jenkins-docker-kubernetes.git
+   21  ls
+   22  cd nodejsapp_jenkins-docker-kubernetes/
+   23  ls
+   24  rm -rf Jenkinsfile Jenkinsfile2 deploy.tf openshiftdeploymentfile.yaml
+   25  ls
+   26  rm -rf Readme.md
+   27  ls
+   28  clear
+   29  ls
+   30  apt install tree
+   31  clear
+   32  tree
+   33  cat dockerfile
+   34  ls
+   35  docker images
+   36  docker ps
+   37  ls
+   38  cat dockerfile
+   39  docker build -t socgenImage .
+   40  docker build -t socgenimage .
+   41  docker images
+   42  df -h
+   43  docker image history socgenimage
+   44  clear
+   45  docker images
+   46  docker ps
+   47  docker run -dt --name c1 socgenimage
+   48  docker ps
+   49  docker images
+    docker exec -it c1 /bin/bash
+
+
+
+==================================
+
+i have my custom image of my application ...
+
+-- go to container registries :
+    
+    
+    
+    
+    docker images
+   69  docker login
+   70  docker login ramanimagereg.azurecr.io
+   71  docker images
+   72  docker push socgenimage
+   73  clear
+   74  docker images
+   75  docker tag socgenimage:latest ramanimagereg.azurecr.io/socgenimage:version1
+   76  docker images
+   77  docker push ramanimagereg.azurecr.io/socgenimage:version1
+   78  ls
+   79  docker images
+   80  docker rmi -f `docker images`
+   81  docker rm -f c1
+   82  docker rmi -f `docker images`
+   83  clear
+   84  docker images
+   85  docker ps
+   86  docker run -dt --name socgencont -P ramanimagereg.azurecr.io/socgenimage:version1
+   87  docker images
+   88  docker ps
+   89  clear
+   90  docker ps
+   91  curl local:32768
+   92  curl localhost:32768
+   93  clear
+   94  docker images
+   95  docker ps
+   96  docker exec -it socgencont /bin/bash
+
+
+
+===============================================
+
+
+after connecting to my cluster :
+    
+ 
+   
+   
+   
+   
+    4  kubectl get pods
+    5  kubectl get pods -o wide
+    6  kubectl get pods -A
+    7  kubectl get nodes
+    8  clear
+    9  kubectl get pods
+   10  kubectl get nodes
+   11  kubectl run myapp --image httpd 
+   12  kubectl get pods
+   13  kubectl get pods -o wide
+   14  kubectl get nodes
+   15  clear
+   16  history
+   17  alias k=kubectl
+   18  k api-resources
+   19  clear
+   20  ls
+   21  vi deploy.yml
+   22  k create -f deploy.yml 
+   23  k get all
+   24  k get pods -o wide
+   
+   
+   
+   
+   
+   raman [ ~ ]$ cat deploy.yml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+  labels:
+    app: nodeapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp 
+    spec:
+      containers:
+      - name: nodeserver
+        image: ramanimagereg.azurecr.io/socgenimage:version1
+        ports:
+        - containerPort: 3000
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-service
+spec:
+  selector:
+    app: nodeapp 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+    
+    
+    
+    ===========================================
+  ```
