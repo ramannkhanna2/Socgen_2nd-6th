@@ -1,0 +1,599 @@
+```
+
+Welcome to OpenDev Etherpad!
+
+my name is raman khanna
+
+
+cloud providers : aws , azure , gcp , firebase , oracle , ibm , etc 
+
+
+business owner : application (xyz) to be created >> i need compute ( ram & cpu ) (servers , operating system 
+) , ntwrking , databse , disk , etc ....  ( vendor dependency )
+
+
+
+
+before the cloud ws introduced : before 2004 04 mybe 2006 : traditional 
+
+  -- capacity planning (5-6 mnths ) : involved cost and costly to purchase the infrastructuire
+    -- utlization of resources by my application users ( number of userbase ) & when they are active 
+    --compute (cpu utilization , ram , hard disk )
+    -- servers
+
+
+
+jan . feb : 500 
+
+march : number of user increased drstically 5000 
+ scale : challenge 
+
+
+
+( virtualization ) : busines owner still nees to purchase the components but manage virtually..
+
+hypervisors :  vmware , filezilla , virtual box 
+
+
+challenges : 
+  managing resources 
+  compatibility and scaling
+
+
+
+
+cloud : 2006 : massive infrastructure
+   
+ small business owners now even to develop  to thousands of users
+
+rent the infra from my provider ... ( pay as u go ) .. service cost
+   resources provider : aws , azure , gcp
+
+designing my application :
+capacity planning : not essential ( if my usrerbase increaes)
+   3 servers : userbase >>> 300000
+
+
+
+
+=======================================================================================
+
+
+webapps :
+
+install visuall studio code ..
+
+https://github.com/ramannkhanna2/JavaWebAppp.git
+
+
+HP@DESKTOP-3G12VKI MINGW64 ~/Desktop
+$ git clone https://github.com/ramannkhanna2/JavaWebAppp.git
+Cloning into 'JavaWebAppp'...
+remote: Enumerating objects: 69, done.
+
+
+install java :
+    https://www.oracle.com/in/java/technologies/downloads/#jdk21-windows
+
+mven installation :
+
+https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
+
+create an env variable >> system var >> path >> C:\Users\HP\Downloads\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin
+
+
+-- create my webapp ..
+
+asp : basic 
+
+====================================================================
+
+--- in visual studio code , cd inside the javawebapp folder :
+    
+    201  pwd
+  202  ls
+  
+  -- build ur artefact :
+      
+  203  mvn clean package
+  
+  code >> artefact >> build 
+  
+  -- after building the artefact , install the extesion : azure app services ..
+  
+  ---- right click on the created jar file >> deploy2webapp 
+  
+
+
+---- make the changes and redeploy ........................
+
+
+=======================================================
+
+
+deployment slots :
+    
+    
+default : prodn   
+
+ramanwebapp-auhye5chduakg4h5.canadacentral-01.azurewebsites.net
+    
+    
+    -- creating a deployment slot of name : otherversion 
+    
+    otherversion: (testing )
+ramanwebapp-otherversion-hnhaccfyeqhsd6hc.canadacentral-01.azurewebsites.net
+
+--------------------
+    
+    --- on vscode , install azure services extension as well ....
+    
+    onmy code , changed the box bckground : puprle for my otherversion slot..
+    
+    ---
+    mvn clean package 
+    
+    ---- go to extension azure resources  >> deploy2slot 
+    
+    -----------------------------------------------    
+    
+    
+    we can do a swap over for a/b testing ....
+    
+try swapping from default to otherversion..
+
+tha go for canary deploymnt :
+    
+    split the traffic on ur default domain :
+        50-50 or wtever split u like 
+        
+        --then test ut up;;
+        
+        ======================================================================================
+        
+        
+        Azure function : 
+        
+        
+        
+    
+Here’s how you can easily demonstrate the React-based contact form submission using Azure Functions:
+
+Step-by-Step Demonstration
+1. Create the Azure Function
+ 
+Open the Azure     Portal. 
+Go to Azure     Functions and click Create Function App. 
+Configure the function     app:   
+Select a      resource group.  
+Use a unique      name for your function app (e.g., simple-contact-form).  
+Runtime stack:      Node.js.  
+Hosting:      Select Consumption Plan.  
+Click Review      + Create and then Create.  
+Once the     function app is created:   
+Go to the Functions      section in the function app.  
+Click + Add      Function, select HTTP Trigger, and name it SubmitForm. 
+2. Write the Function Code
+ 
+In the Azure     Portal, edit the index.js file of the function:
+ 
+module.exports = async function (context, req) {
+    context.log('JavaScript HTTP trigger function processed a request.');
+ 
+    // Extract the name and email from query or request body
+    const name = (req.query.name || (req.body && req.body.name));
+    const email = (req.query.email || (req.body && req.body.email));
+ 
+    // Check if both name and email are provided for the personalized response
+    let responseMessage;
+    if (name && email) {
+        responseMessage = `Hello, ${name}, your email address is ${email}. This HTTP triggered function executed successfully.`;
+    } else {
+        responseMessage = "This HTTP triggered function executed successfully. Pass both name and email in the query string or in the request body for a personalized response.";
+    }
+ 
+    // Set the response with the message
+    context.res = {
+        // status: 200, /* Defaults to 200 */
+        body: responseMessage
+    };
+};
+ 
+ 
+ 
+ 
+ 
+Save the file. 
+Test the get     request by adding query parameters :
+Name: rakesh
+Email testrakesh
+ 
+Test the     function using the Test/Run button in the portal for post request:   
+Choose POST method.  
+Use a JSON      payload: 
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "message": "Hello!"
+}
+   
+Check the      output. You should see the success response. 
+
+
+
+========================================================================
+
+
+default (Function key)  : add this URL on ur App.js
+
+===============================================
+
+installation of docker >> code     >>    dockerfile (set of instructions)   >>   docker image (template: set of intructions in form of an artefact) read only part  (azure registry)    >>> containers  (application for our users )  running part of my apps  : host on aks , aci
+
+Contanerization :
+    
+---- create a machine of ubuntu and wl be install docker on top it ...
+
+ssh inside >> sudo -i
+
+-- install docker :
+    
+https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
+
+
+
+
+ docker -v
+   17  ls
+   18  docker ps
+   19  docker images
+   20  git clone https://github.com/ramannkhanna2/nodejsapp_jenkins-docker-kubernetes.git
+   21  ls
+   22  cd nodejsapp_jenkins-docker-kubernetes/
+   23  ls
+   24  rm -rf Jenkinsfile Jenkinsfile2 deploy.tf openshiftdeploymentfile.yaml
+   25  ls
+   26  rm -rf Readme.md
+   27  ls
+   28  clear
+   29  ls
+   30  apt install tree
+   31  clear
+   32  tree
+   33  cat dockerfile
+   34  ls
+   35  docker images
+   36  docker ps
+   37  ls
+   38  cat dockerfile
+   39  docker build -t socgenImage .
+   40  docker build -t socgenimage .
+   41  docker images
+   42  df -h
+   43  docker image history socgenimage
+   44  clear
+   45  docker images
+   46  docker ps
+   47  docker run -dt --name c1 socgenimage
+   48  docker ps
+   49  docker images
+    docker exec -it c1 /bin/bash
+
+
+
+==================================
+
+i have my custom image of my application ...
+
+-- go to container registries :
+    
+    
+    
+    
+    docker images
+   69  docker login
+   70  docker login ramanimagereg.azurecr.io
+   71  docker images
+   72  docker push socgenimage
+   73  clear
+   74  docker images
+   75  docker tag socgenimage:latest ramanimagereg.azurecr.io/socgenimage:version1
+   76  docker images
+   77  docker push ramanimagereg.azurecr.io/socgenimage:version1
+   78  ls
+   79  docker images
+   80  docker rmi -f `docker images`
+   81  docker rm -f c1
+   82  docker rmi -f `docker images`
+   83  clear
+   84  docker images
+   85  docker ps
+   86  docker run -dt --name socgencont -P ramanimagereg.azurecr.io/socgenimage:version1
+   87  docker images
+   88  docker ps
+   89  clear
+   90  docker ps
+   91  curl local:32768
+   92  curl localhost:32768
+   93  clear
+   94  docker images
+   95  docker ps
+   96  docker exec -it socgencont /bin/bash
+
+
+
+===============================================
+
+
+after connecting to my cluster :
+    
+ 
+   
+   
+   
+   
+    4  kubectl get pods
+    5  kubectl get pods -o wide
+    6  kubectl get pods -A
+    7  kubectl get nodes
+    8  clear
+    9  kubectl get pods
+   10  kubectl get nodes
+   11  kubectl run myapp --image httpd 
+   12  kubectl get pods
+   13  kubectl get pods -o wide
+   14  kubectl get nodes
+   15  clear
+   16  history
+   17  alias k=kubectl
+   18  k api-resources
+   19  clear
+   20  ls
+   21  vi deploy.yml
+   22  k create -f deploy.yml 
+   23  k get all
+   24  k get pods -o wide
+   
+   
+   
+   
+   
+   raman [ ~ ]$ cat deploy.yml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+  labels:
+    app: nodeapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp 
+    spec:
+      containers:
+      - name: nodeserver
+        image: ramanimagereg.azurecr.io/socgenimage:version1
+        ports:
+        - containerPort: 3000
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-service
+spec:
+  selector:
+    app: nodeapp 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+    
+    
+    
+    ===========================================
+    
+    
+    --- create a storage account ..
+    
+    
+    access tiers  
+        
+        
+    sas at bob level
+    sas at continaner 
+    
+    access policy
+    
+    versioning & soft delete  ( note : soft delete to happen , must have enabled versioning )
+    
+    sas at st. account level
+    
+    accesstiers of objects & lifecycle management rules of blobs of mine
+    
+    
+    ====================================================================
+    
+    
+    https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+    
+    
+    created a new dirctry blobapp ..
+    
+    
+    =======================================================
+    
+    
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ =================================================================================================
+ 
+ 
+ 
+ search for 
+ azure devops organisations ..
+ 
+ 
+ after creating ur org , create a new project..
+ 
+ 
+ CI pipeline :
+ 
+ https://github.com/ramannkhanna2/CI-CD-pipeline-JavaApp-AzureDevops.git
+ 
+ -- fork above repository in ur github acc..
+ 
+ 
+ -- go to piplielines >> use classic editor /wizard ... 
+ 
+ --  use maven template in buid stage
+ 
+ --- agent pool : azure pipelines : ubuntu:latest
+ 
+ -- paramerters :  app/pom.xml
+ 
+ 
+ 
+ ================================================
+ 
+ 
+ oraganizational setetings >> agents poools >> self hosted agent poool.......
+ 
+ -- created a virtual machine i.e ; linux ubuntu..22
+ 
+ 
+  mkdir myagent && cd myagent
+    7  ls
+    8  wget https://vstsagentpackage.azureedge.net/agent/4.248.0/vsts-agent-linux-x64-4.248.0.tar.gz
+    9  ls
+   10  tar zxvf  vsts-agent-linux-x64-4.248.0.tar.gz
+
+   13  ls
+   14  ./config.sh
+
+
+
+on our agent :
+    
+    sudo add-apt-repository ppa:openjdk-r/ppa
+   25  sudo apt update
+   26  sudo apt install openjdk-8-jdk -y
+   27  java --version
+   28  java
+   29  clear
+   30  java
+    java -version
+    
+    sudo apt install maven -y
+    
+    
+       16  ./run.sh
+    
+    ==========================================
+    
+    
+    C.Deployment :
+        
+    -- create a webapp  , java 8 runtime stack
+
+
+--- go to Releaase to create a release pipeline.. >> template : azure app service deployment
+
+--- selecting 
+
+ ============================================
+ 
+ 
+ 
+ 
+ 
+ 
+ -        Create cosmosdb for noSql db
+-        After creation >>  goto DataExplorer >> click on NewContainer >> give database Id : myappdb
+-        containerId : cars , partitionKey : /type ………then click OK 
+-        create  items and add below three items one by one . 
+ 
+-        data.json
+{
+    "id": "C01",
+    "model": "Tesla Model S",
+    "rating": 4.7,
+    "type": "Sedan"
+}
+ 
+{
+    "id": "C02",
+    "model": "Jeep Wrangler",
+    "rating": 4.6,
+    "type": "Off-Road SUV"
+}
+ 
+{
+    "id": "C03",
+    "model": "BMW M3",
+    "rating": 4.8,
+    "type": "Sedan"
+}
+ 
+ 
+ 
+ 
+1. The following queries can be fired against the courses container
+1.  SELECT * FROM cars c
+ 
+2.  SELECT * FROM cars c
+ 
+       WHERE c.type="Sedan" 
+ 
+3.  SELECT * FROM cars c
+WHERE c.type="Sedan" AND c.rating>4.5
+ 
+4.  SELECT * FROM cars c
+ 
+WHERE c.name like "%Tes%"
+ 
+ 
+INTERACTION WITH COSMOSDB API :
+https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/quickstart-python
+ 
+ 
+ ==========================================
+
+
+```
